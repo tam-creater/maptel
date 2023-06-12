@@ -19,9 +19,14 @@ class MainActivity : AppCompatActivity() {
         val res: Resources = resources
         val address: String = res.getString(R.string.map_address)
         //地図インテント
-        lateinit var intent: Intent
+        /*lateinit var intent: Intent
         intent.action = Intent.ACTION_VIEW
         intent.data = Uri.parse("geo:0,0?q=$address")
+        startActivity(intent)*/
+
+        val intent: Intent = Uri.parse("geo:0,0?q=$address").let { address ->
+            Intent(Intent.ACTION_VIEW, address)
+        }
         startActivity(intent)
     }
 }
