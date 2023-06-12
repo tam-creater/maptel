@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,14 +20,18 @@ class MainActivity : AppCompatActivity() {
         val res: Resources = resources
         val address: String = res.getString(R.string.map_address)
         //地図インテント
-        /*lateinit var intent: Intent
-        intent.action = Intent.ACTION_VIEW
-        intent.data = Uri.parse("geo:0,0?q=$address")
-        startActivity(intent)*/
-
         val intent: Intent = Uri.parse("geo:0,0?q=$address").let { address ->
             Intent(Intent.ACTION_VIEW, address)
         }
+        startActivity(intent)
+    }
+    //電話連携関数
+    fun call(view: View) {
+        //電話番号取得
+        val textInput: EditText = findViewById(R.id.editText1)
+        val call: String = textInput.text.toString()
+        //電話インテント
+        val intent: Intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$call"))
         startActivity(intent)
     }
 }
