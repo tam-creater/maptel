@@ -33,5 +33,6 @@ class MainActivity : AppCompatActivity() {
         //電話インテント
         val intent: Intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$call"))
         startActivity(intent)
+        finish()
     }
 }
